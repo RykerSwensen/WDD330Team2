@@ -24,7 +24,6 @@ export default defineConfig({
           __dirname,
           "src/product_pages/northface-talus-4.html"
         ),
-        json: resolve(__dirname, "src/json/tents.json"),
       },
     },
   },
