@@ -28,6 +28,6 @@ export function setClick(selector, callback) {
 }
 export function getParam(url){
   const urlParams = new URLSearchParams(url);
-  const product = urlParams.get('product')
+  const product = urlParams.get("product")
   return product
 }
