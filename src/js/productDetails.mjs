@@ -26,7 +26,10 @@ function productDetailsTemplate(product) {
     product.NameWithoutBrand;
   document.getElementById("ProductImage").setAttribute("src", product.Image);
   document.getElementById("ProductImage").setAttribute("alt", product.Name);
-  document.getElementById("productFinalPrice").textContent = product.FinalPrice;
+  document.getElementById("productFinalPrice").textContent = '$' + product.FinalPrice;
+  document.getElementById("productOriginalPrice").textContent = '$' + product.SuggestedRetailPrice;
+  const discount = (1 - product.FinalPrice/product.SuggestedRetailPrice) * 100
+  document.getElementById("discount").innerHTML = Math.round(discount) + '% off';
   document.getElementById("productColorName").textContent =
     product.Colors[0].ColorName;
   document.getElementById("productDescriptionHtmlSimple").innerHTML =
