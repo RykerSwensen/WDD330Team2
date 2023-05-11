@@ -91,6 +91,11 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+
+button:hover{
+  background-color: rgb(70, 79, 3);
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -200,6 +205,23 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+}
+
+#prices{
+  display:flex;
+  justify-content: left;
+  gap: 10px;
+}
+
+#productOriginalPrice{
+  text-decoration: line-through;
+  color:	rgb(182,182,182);
+}
+
+#discount{
+  /* color: rgb(73,165,66); */
+  color: green;
+  margin-top: 0;
 }
 
 @media screen and (min-width: 500px) {
