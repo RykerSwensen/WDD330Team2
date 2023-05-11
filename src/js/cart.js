@@ -28,4 +28,32 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+function displayTotal(){
+  // Get dictionary from localstorage
+  const cartItems = getLocalStorage("so-cart");
+  // Display total: if there are items in the cart
+  const cart_total = document.querySelector('.cart-total');
+  if (cartItems != null) {
+    
+    cart_total.style.display = 'inline';
+  }
+
+  const total = cartItems.reduce((total, item) => {
+    total += item.FinalPrice;
+    console.log(item, total);
+    return total;
+  },0)
+
+  cart_total.innerHTML += total;  
+  
+  
+  // cartItems.forEach();
+
+  // for (let item in cartItems)
+  // {
+  //   const price = item[price];
+  // }
+}
+
 renderCartContents();
+displayTotal();
