@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getCartCount, getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
 
 // Get all the product details
 export default async function productDetails(productId) {
@@ -18,6 +19,7 @@ function addProductToCart(product) {
   items.push(product);
   // Save all the cart items to the local storage
   setLocalStorage("so-cart", items);
+  cartCount.set(getCartCount())
 }
 
 function productDetailsTemplate(product) {

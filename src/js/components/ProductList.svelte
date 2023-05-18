@@ -17,5 +17,5 @@ let promise = getData(category);
 <ProductSummary {product}/>
 {/each}
 </ul> 
-{/await} 
+{/await}
                 

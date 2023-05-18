@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
+import { renderHeaderFooter } from "./utils.mjs";
 
 const key = "so-cart";
 
@@ -71,4 +72,5 @@ function showCartItems() {
     totalAmount.textContent = `$${total}`;
   }
 }
+renderHeaderFooter();
 showCartItems();
