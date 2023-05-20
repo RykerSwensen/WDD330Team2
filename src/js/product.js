@@ -1,11 +1,13 @@
 import { getLocalStorage, setLocalStorage, getParam} from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import productDetails from "./productDetails.mjs";
+import { renderHeaderFooter } from "./utils.mjs";
 
 const url = window.location.search;
 const productId = getParam(url);
 
 productDetails(productId);
+renderHeaderFooter();
 
 // // add to cart button event handler
 // async function addToCartHandler(e) {

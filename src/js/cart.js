@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
+import { renderHeaderFooter } from "./utils.mjs";
 
 const key = "so-cart";
 
