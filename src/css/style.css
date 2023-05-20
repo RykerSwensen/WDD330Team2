@@ -108,6 +108,9 @@ button:hover{
   text-align: center;
 }
 
+.cart-total {
+  display: none;
+}
 .cart svg {
   width: 25px;
 }
