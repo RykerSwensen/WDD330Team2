@@ -6,10 +6,7 @@ const key = "so-cart";
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   if (cartItems == null || cartItems.length == 0) {
-
-    document.querySelector(
-      ".product-list"
-    ).innerHTML = `<h3>Your Cart!</h3>`;
+    document.querySelector(".product-list").innerHTML = `<h3>Your Cart!</h3>`;
   } else {
     const htmlItems = cartItems.map((item, index) =>
       cartItemTemplate(item, index)
@@ -19,8 +16,8 @@ function renderCartContents() {
     document.querySelectorAll(".removeFromCart").forEach((item) => {
       item.addEventListener("click", removeFromCart);
     });
-
   }
+  displayTotal();
 }
 
 function cartItemTemplate(item, index) {
@@ -42,25 +39,23 @@ function cartItemTemplate(item, index) {
   return newItem;
 }
 
-function displayTotal(){
+function displayTotal() {
   // Get dictionary from localstorage
   const cartItems = getLocalStorage("so-cart");
   // Display total: if there are items in the cart
-  const cart_total = document.querySelector('.cart-total');
+  const cart_total = document.querySelector(".cart-total");
   if (cartItems != null) {
-    
-    cart_total.style.display = 'inline';
+    cart_total.style.display = "inline";
   }
 
   const total = cartItems.reduce((total, item) => {
     total += item.FinalPrice;
     console.log(item, total);
     return total;
-  },0)
+  }, 0);
 
-  cart_total.innerHTML += total;  
-  
-  
+  cart_total.innerHTML = `Total: $${total}`;
+
   // cartItems.forEach();
 
   // for (let item in cartItems)
@@ -72,7 +67,7 @@ function displayTotal(){
 function removeFromCart() {
   let currentArray = JSON.parse(localStorage.getItem(key));
   const index = event.target.getAttribute("data-index");
-  
+
   currentArray.splice(index, 1);
   localStorage.setItem(key, JSON.stringify(currentArray));
 
@@ -100,5 +95,4 @@ function showCartItems() {
 }
 
 renderCartContents();
-displayTotal();
 showCartItems();
