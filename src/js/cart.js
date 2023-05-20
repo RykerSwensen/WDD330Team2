@@ -50,18 +50,10 @@ function displayTotal() {
 
   const total = cartItems.reduce((total, item) => {
     total += item.FinalPrice;
-    console.log(item, total);
     return total;
   }, 0);
 
   cart_total.innerHTML = `Total: $${total}`;
-
-  // cartItems.forEach();
-
-  // for (let item in cartItems)
-  // {
-  //   const price = item[price];
-  // }
 }
 
 function removeFromCart() {
@@ -94,5 +86,6 @@ function showCartItems() {
   }
 }
 
+renderHeaderFooter();
 renderCartContents();
 showCartItems();
