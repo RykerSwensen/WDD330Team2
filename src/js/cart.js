@@ -41,6 +41,33 @@ function cartItemTemplate(item, index) {
   return newItem;
 }
 
+function displayTotal(){
+  // Get dictionary from localstorage
+  const cartItems = getLocalStorage("so-cart");
+  // Display total: if there are items in the cart
+  const cart_total = document.querySelector('.cart-total');
+  if (cartItems != null) {
+    
+    cart_total.style.display = 'inline';
+  }
+
+  const total = cartItems.reduce((total, item) => {
+    total += item.FinalPrice;
+    console.log(item, total);
+    return total;
+  },0)
+
+  cart_total.innerHTML += total;  
+  
+  
+  // cartItems.forEach();
+
+  // for (let item in cartItems)
+  // {
+  //   const price = item[price];
+  // }
+}
+
 function removeFromCart() {
   let currentArray = JSON.parse(localStorage.getItem(key));
   const index = event.target.getAttribute("data-index");
@@ -51,7 +78,6 @@ function removeFromCart() {
   renderCartContents();
 }
 
-renderCartContents();
 function calculateTotal() {
   const cartItems = getLocalStorage("so-cart");
   let total = 0;
@@ -71,4 +97,7 @@ function showCartItems() {
     totalAmount.textContent = `$${total}`;
   }
 }
+
+renderCartContents();
+displayTotal();
 showCartItems();
