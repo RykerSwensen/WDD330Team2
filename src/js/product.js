@@ -3,7 +3,7 @@ import productDetails from "./productDetails.mjs";
 import { renderHeaderFooter } from "./utils.mjs";
 
 const url = window.location.search;
-const productId = getParam(url);
+const productId = getParam(url, "product");
 
 productDetails(productId);
 renderHeaderFooter();
