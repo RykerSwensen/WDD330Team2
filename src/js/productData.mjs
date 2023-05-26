@@ -1,3 +1,5 @@
+const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -7,17 +9,13 @@ function convertToJson(res) {
 }
 
 export async function getData(category = "tents") {
-  const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
-  console.log(baseURL);
-  const response = await fetch(baseURL + "products/search/" + category)
-  console.log(response)
-    const data = await convertToJson(response);
-    return data.Result;
-   
-
+  const response = await fetch(baseURL + "products/search/" + category);
+  const data = await convertToJson(response);
+  return data.Result;
 }
 
 export async function findProductById(id) {
-  const products = await getData();
-  return products.find((item) => item.Id === id);
+  const response = await fetch(baseURL + `product/${id}`);
+  const product = await convertToJson(response);
+  return product.Result;
 }

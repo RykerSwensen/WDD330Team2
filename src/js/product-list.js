@@ -1,12 +1,10 @@
 import ProductList from "./components/ProductList.svelte";
 import { getParam } from "./utils.mjs";
 
-const url = window.location.search;
+const url = window.location;
 const productType = getParam(url, "category");
-console.log(productType)
 
 new ProductList({
-    target: document.querySelector(".products"),
-    props: { category: productType },
+  target: document.querySelector(".products"),
+  props: { category: productType },
 });
-

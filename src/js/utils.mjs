@@ -10,7 +10,7 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  return JSON.parse(localStorage.getItem(key)) || [];
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
@@ -25,7 +25,7 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 export function getParam(url, key) {
-  const urlParams = new URLSearchParams(url);
+  const urlParams = new URLSearchParams(url.search);
   const product = urlParams.get(key);
   return product;
 }
@@ -41,5 +41,5 @@ export function renderHeaderFooter() {
 }
 
 export function getCartCount() {
-  return getLocalStorage("so-cart").length;
+  return getLocalStorage("so-cart").length || 0;
 }

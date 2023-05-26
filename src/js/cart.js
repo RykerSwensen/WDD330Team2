@@ -24,7 +24,7 @@ function cartItemTemplate(item, index) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -80,8 +80,8 @@ function showCartItems() {
   if (cartItems.length > 0) {
     const cartFooter = document.querySelector(".cart-footer");
     cartFooter.classList.remove("hide");
-    const totalAmount = document.getElementById("totalAmount");
-    const total = calculateTotal();
+    const totalAmount = document.getElementById("cart-total");
+    const total = Math.round(calculateTotal());
     totalAmount.textContent = `$${total}`;
   }
 }
