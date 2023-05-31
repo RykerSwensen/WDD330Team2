@@ -239,6 +239,17 @@ button:hover{
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+  .product-types {
+    display: flex;
+    justify-content: space-between;
+    margin:0 100px;
+  }
+  .product-types img {
+    height: 100px;
+  }
+  .product-types a {
+    text-decoration: none;
+  }
 }
 
 footer {

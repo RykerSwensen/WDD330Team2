@@ -39,7 +39,7 @@
   <img
     class="divider"
     id="ProductImage"
-    src={product.Image}
+    src={product.Images.PrimaryLarge}
     alt={product.Name}
   />
 
