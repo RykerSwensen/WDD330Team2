@@ -12,7 +12,25 @@
   async function addToCartHandler(e) {
     const product = await findProductById(e.target.dataset.id);
     addProductToCart(product);
+    animateCartIcon();
   }
+
+  function animateCartIcon() {
+  const cartIcon = document.querySelector(".cart");
+  
+    const cartAnimationKeyframe = [
+      { transform: "rotate(0) scale(1)" },
+      { transform: "rotate(0deg) scale(1.4)", fill: "#008000" },
+      { transform: "rotate(-30deg) scale(1.4)", fill: "#008000" },
+    ];
+
+    const cartAnimationOptions = {
+      duration: 100,
+      iterations: 1
+    };
+
+    cartIcon.animate(cartAnimationKeyframe, cartAnimationOptions);
+}
 
   function addProductToCart(product) {
     // Get the current cart. (Get local storage)
