@@ -86,6 +86,8 @@ function showCartItems() {
   }
 }
 
+
+
 renderHeaderFooter();
 renderCartContents();
 showCartItems();
