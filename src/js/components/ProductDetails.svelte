@@ -20,15 +20,13 @@
   
     const cartAnimationKeyframe = [
       { transform: "rotate(0) scale(1)" },
-      { transform: "rotate(30deg) scale(1.4)", fill: "#008000" },
       { transform: "rotate(0deg) scale(1.4)", fill: "#008000" },
       { transform: "rotate(-30deg) scale(1.4)", fill: "#008000" },
-      { transform: "rotate(0) scale(1)", fill: "none" }
     ];
 
     const cartAnimationOptions = {
-      duration: 250,
-      iterations: 2
+      duration: 100,
+      iterations: 1
     };
 
     cartIcon.animate(cartAnimationKeyframe, cartAnimationOptions);
