@@ -230,6 +230,19 @@ button:hover{
   color: green;
   margin-top: 0;
 }
+.product-types img {
+  height: 100px;
+}
+.product-types a{
+  text-decoration: none;
+  color:#525b0f;
+  font-weight: bold;
+}
+.product-types{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
 
 @media screen and (min-width: 500px) {
   body {
@@ -254,13 +267,12 @@ button:hover{
     justify-content: space-between;
     margin:0 100px;
   }
-  .product-types img {
-    height: 100px;
+  .product-types{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
   }
-  .product-types a {
-    text-decoration: none;
-  }
-  
+   
 }
 
 footer {
