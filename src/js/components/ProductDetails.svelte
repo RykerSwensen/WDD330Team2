@@ -61,7 +61,9 @@
   <img
     class="divider"
     id="ProductImage"
+    srcset={`${product.Images.PrimaryLarge} 320w, ${product.Images.PrimaryExtraLarge} 600w`} 
     src={product.Images.PrimaryLarge}
+    sizes="(max-width: 320px) 320px, 600px"
     alt={product.Name}
   />
 
