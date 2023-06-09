@@ -2,6 +2,8 @@
   import { get } from "svelte/store";
   import { getLocalStorage } from "../utils.mjs";
   import { checkout } from "../externalServices.mjs";
+  // import AlertMessage from "./AlertMessage.svelte";
+  import { alertMessage } from  "../utils.mjs";
   let cartItems;
   let total = 0;
   let tax = 0;
@@ -25,9 +27,31 @@
     orderTotal = total + tax + shipping;
   };
 
-  function checkoutHandler(event) {
-    let checkoutObject = packageItems();
-    checkout(checkoutObject);
+  async function checkoutHandler(event) {
+    var myForm = document.forms[0];
+    var chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if(chk_status) {
+      let checkoutObject = packageItems();
+    
+      try {
+        await checkout(checkoutObject);
+      }
+      catch(error){
+        console.log(error);
+        for (let message in error.message)
+        {
+
+          alertMessage(error.message[message]);
+        }
+        
+      }
+    }
+    else{
+      alertMessage("not valid");
+    }
+
+   
   }
 
   function getSimpleCartItems() {
@@ -60,9 +84,9 @@
       city: document.getElementById("city").value,
       state: document.getElementById("state").value,
       zip: document.getElementById("zip").value,
-      cardNumber: 1234123412341234,
-      expiration: "8/23",
-      code: 123,
+      cardNumber: document.getElementById("cardnum").value,
+      expiration: document.getElementById("exDate").value,
+      code: document.getElementById("secCode").value,
       items: getSimpleCartItems(),
       orderTotal: orderTotal,
       shipping: shipping,
@@ -73,24 +97,24 @@
 </script>
 
 <form id="checkoutform" name="checkoutform">
-  <label for="FirstName">First Name</label><br />
-  <input name="FirstName" id="fname" /><br />
-  <label for="LastName">Last Name</label><br />
-  <input name="LastName" id="lname" /><br />
-  <label for="Street">Street</label><br />
-  <input name="Street" id="street" /><br />
-  <label for="City">City</label><br />
-  <input name="City" id="city" /><br />
-  <label for="State">State</label><br />
-  <input name="State" id="state" /><br />
-  <label for="Zip">Zip</label><br />
-  <input name="Zip" id="zip" /><br />
-  <label for="CardNum">Card Number</label><br />
-  <input name="CardNum" id="cardnum" /><br />
-  <label for="ExDate">Expiration Date</label><br />
-  <input name="ExDate" id="exDate" /><br />
-  <label for="SecCode">Security Code</label><br />
-  <input name="SecCode" id="secCode" /><br />
+  <label for="FirstName">First Name*</label><br />
+  <input name="FirstName" id="fname" required/><br />
+  <label for="LastName">Last Name*</label><br />
+  <input name="LastName" id="lname" required/><br />
+  <label for="Street">Street*</label><br />
+  <input name="Street" id="street" required/><br />
+  <label for="City">City*</label><br />
+  <input name="City" id="city" required/><br />
+  <label for="State">State*</label><br />
+  <input name="State" id="state" required/><br />
+  <label for="Zip">Zip*</label><br />
+  <input name="Zip" id="zip" required/><br />
+  <label for="CardNum">Card Number*</label><br />
+  <input name="CardNum" id="cardnum" required/><br />
+  <label for="ExDate">Expiration Date*</label><br />
+  <input name="ExDate" id="exDate" required/><br />
+  <label for="SecCode">Security Code*</label><br />
+  <input name="SecCode" id="secCode" required/><br />
 </form>
 <fieldset class="checkout-summary">
   <legend>Order Summary</legend>
