@@ -45,6 +45,10 @@
     setLocalStorage("so-cart", items);
     cartCount.set(getCartCount());
   }
+
+  // function calculateDiscount(product){
+  //   Math.round(product.SuggestedRetailPrice * (discount / 100))
+  // }
 </script>
 
 <section class="product-detail">
@@ -57,16 +61,18 @@
   <img
     class="divider"
     id="ProductImage"
+    srcset={`${product.Images.PrimaryLarge} 320w, ${product.Images.PrimaryExtraLarge} 600w`} 
     src={product.Images.PrimaryLarge}
+    sizes="(max-width: 320px) 320px, 600px"
     alt={product.Name}
   />
 
   <div id="prices">
     <p class="product-card__price" id="productFinalPrice">
-      {Math.round(product.SuggestedRetailPrice * (discount / 100))}
+      ${Math.round(product.SuggestedRetailPrice * (discount / 100))}
     </p>
     <p class="product-card__price" id="productOriginalPrice">
-      {product.SuggestedRetailPrice}
+      ${product.SuggestedRetailPrice}
     </p>
   </div>
   <p class="product-card__price" id="discount">{Math.round(discount)}% off</p>
