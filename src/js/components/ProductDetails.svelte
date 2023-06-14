@@ -1,5 +1,5 @@
 <script>
-  import { findProductById } from "../productData.mjs";
+  import { findProductById } from "../externalServices.mjs";
   import { getCartCount, getLocalStorage, setLocalStorage } from "../utils.mjs";
   import { cartCount } from "../stores.mjs";
   export let product;
@@ -16,8 +16,8 @@
   }
 
   function animateCartIcon() {
-  const cartIcon = document.querySelector(".cart");
-  
+    const cartIcon = document.querySelector(".cart");
+
     const cartAnimationKeyframe = [
       { transform: "rotate(0) scale(1)" },
       { transform: "rotate(0deg) scale(1.4)", fill: "#008000" },
@@ -26,11 +26,11 @@
 
     const cartAnimationOptions = {
       duration: 100,
-      iterations: 1
+      iterations: 1,
     };
 
     cartIcon.animate(cartAnimationKeyframe, cartAnimationOptions);
-}
+  }
 
   function addProductToCart(product) {
     // Get the current cart. (Get local storage)

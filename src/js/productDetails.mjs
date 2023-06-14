@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import ProductDetails from "./components/ProductDetails.svelte";
 import ProductNotFound from "./components/ProductNotFound.svelte";
 

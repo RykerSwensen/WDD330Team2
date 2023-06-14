@@ -1,5 +1,6 @@
 import MainHeader from "./components/MainHeader.svelte";
 import MainFooter from "./components/MainFooter.svelte";
+import AlertMessage from "./components/AlertMessage.svelte";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -42,4 +43,15 @@ export function renderHeaderFooter() {
 
 export function getCartCount() {
   return getLocalStorage("so-cart").length || 0;
+}
+
+export function alertMessage(message, scroll=true) {
+  const alert = new AlertMessage({
+    target: document.querySelector("body"),
+    anchor: document.querySelector("main"),
+    props: {
+    message,
+    },
+  });
+  if (scroll) window.scrollTo(0, 0);
 }
