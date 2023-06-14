@@ -24,7 +24,7 @@ function cartItemTemplate(item, index) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -32,7 +32,7 @@ function cartItemTemplate(item, index) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1 | <span id="removeFromCart" data-id="${item.Id}" data-index="${index}" class="cart-card__remove removeFromCart">X</span></p>
+  <a href="#"><p class="cart-card__quantity">qty: 1 | <span id="removeFromCart" data-id="${item.Id}" data-index="${index}" class="cart-card__remove removeFromCart material-symbols-outlined">delete</span></p></a>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
 
@@ -80,11 +80,13 @@ function showCartItems() {
   if (cartItems.length > 0) {
     const cartFooter = document.querySelector(".cart-footer");
     cartFooter.classList.remove("hide");
-    const totalAmount = document.getElementById("totalAmount");
-    const total = calculateTotal();
+    const totalAmount = document.getElementById("cart-total");
+    const total = Math.round(calculateTotal());
     totalAmount.textContent = `$${total}`;
   }
 }
+
+
 
 renderHeaderFooter();
 renderCartContents();

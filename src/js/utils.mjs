@@ -1,5 +1,6 @@
 import MainHeader from "./components/MainHeader.svelte";
 import MainFooter from "./components/MainFooter.svelte";
+import AlertMessage from "./components/AlertMessage.svelte";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -10,7 +11,7 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  return JSON.parse(localStorage.getItem(key)) || [];
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
@@ -24,9 +25,9 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
-export function getParam(url) {
-  const urlParams = new URLSearchParams(url);
-  const product = urlParams.get("product");
+export function getParam(url, key) {
+  const urlParams = new URLSearchParams(url.search);
+  const product = urlParams.get(key);
   return product;
 }
 
@@ -41,5 +42,16 @@ export function renderHeaderFooter() {
 }
 
 export function getCartCount() {
-  return getLocalStorage("so-cart").length;
+  return getLocalStorage("so-cart").length || 0;
+}
+
+export function alertMessage(message, scroll=true) {
+  const alert = new AlertMessage({
+    target: document.querySelector("body"),
+    anchor: document.querySelector("main"),
+    props: {
+    message,
+    },
+  });
+  if (scroll) window.scrollTo(0, 0);
 }
