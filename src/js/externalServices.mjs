@@ -5,7 +5,7 @@ async function convertToJson(res) {
   if (res.ok) {
     return jsonData;
   } else {
-    throw { name: 'servicesError', message: jsonData };
+    throw { name: "servicesError", message: jsonData };
   }
 }
 
@@ -29,12 +29,16 @@ export async function checkout(payload) {
     },
     body: JSON.stringify(payload),
   };
-  
+
   const response = await fetch(baseURL + "checkout", options);
   return convertToJson(response);
+}
 
-
-  
- 
-  
+export async function getAllItems() {
+  let items = [];
+  const categories = ["tents", "backpacks", "sleeping-bags", "hammocks"];
+  categories.forEach(async (cate) => {
+    items.push(...(await getDataByCategory(cate)));
+  });
+  return items;
 }

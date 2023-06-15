@@ -1,10 +1,24 @@
 <script>
+  import { search } from "../search.mjs";
   import { cartCount } from "../stores.mjs";
+  let searchQuery = "";
+  function searchHandler(e) {
+    search(searchQuery);
+  }
 </script>
 
 <div class="logo">
   <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
   <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
+</div>
+<div class="search">
+  <input
+    type="text"
+    name="searchQuery"
+    id="searchQuery"
+    bind:value={searchQuery}
+  />
+  <button type="button" on:click={searchHandler}>Search</button>
 </div>
 <div class="cart">
   <a href="/cart/index.html">
@@ -44,5 +58,18 @@
     background-color: gold;
     border-radius: 70%;
     font-size: small;
+  }
+  .search {
+    display: flex;
+  }
+  .search input {
+    margin: auto;
+    height: 30px;
+  }
+  .search button {
+    margin: auto;
+    height: 30px;
+    padding: 1px 4px;
+    font-size: medium;
   }
 </style>
