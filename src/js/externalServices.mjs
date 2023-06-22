@@ -1,5 +1,7 @@
 const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
 
+
+
 async function convertToJson(res) {
   let jsonData = await res.json();
   if (res.ok) {
@@ -41,4 +43,30 @@ export async function getAllItems() {
     items.push(...(await getDataByCategory(cate)));
   });
   return items;
+}
+
+// login
+export async function loginRequest(payload) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+  const response = await fetch(baseURL + "login", options);
+  return convertToJson(response).accessToken;
+}
+
+
+// order
+export async function getOrders(token) {
+  const options = {
+    method: "GET",
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
+  };
+  const response = await fetch(baseURL + "orders", options);
+  return convertToJson(response);
 }
